@@ -12,9 +12,11 @@ RUN apt-get -y update \
 # Download steamcmd
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"  | tar xz -C $STEAMCMD
 
+COPY ./config /csgo_config
+COPY ./serve.py /serve.py
+
 WORKDIR $STEAMCMD
 
-# Install Steamcmd
 RUN ./steamcmd.sh +login anonymous +quit
 
 # Fix for missing library
